@@ -1970,9 +1970,8 @@ class S3
 		$amzHeaders = array();
 		$amzRequests = array();
 		
-		$date = new DateTime( 'UTC' );
-		$amzDate =  $date->format( 'Ymd\THis\Z' );
-		$amzDateStamp = $date->format( 'Ymd' );
+		$amzDate =  gmdate( 'Ymd\THis\Z' );
+		$amzDateStamp = gmdate( 'Ymd' );
 
 		// amz-date ISO8601 format ? for aws request		
 		$amzHeaders['x-amz-date'] = $amzDate;
