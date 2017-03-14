@@ -1776,10 +1776,13 @@ class S3
 		if ($comment !== '') $distributionConfig->appendChild($dom->createElement('Comment', $comment));
 		$distributionConfig->appendChild($dom->createElement('Enabled', $enabled ? 'true' : 'false'));
 
-		$trusted = $dom->createElement('TrustedSigners');
-		foreach ($trustedSigners as $id => $type)
-			$trusted->appendChild($id !== '' ? $dom->createElement($type, $id) : $dom->createElement($type));
-		$distributionConfig->appendChild($trusted);
+		if (!empty($trustedSigners))
+		{
+			$trusted = $dom->createElement('TrustedSigners');
+			foreach ($trustedSigners as $id => $type)
+				$trusted->appendChild($id !== '' ? $dom->createElement($type, $id) : $dom->createElement($type));
+			$distributionConfig->appendChild($trusted);
+		}
 
 		$dom->appendChild($distributionConfig);
 		//var_dump($dom->saveXML());
