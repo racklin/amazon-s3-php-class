@@ -2040,6 +2040,7 @@ class S3
 		if (strpos($uri, '?')) {
 			list ($uri, $query_str) = @explode("?", $uri);
 			parse_str($query_str, $parameters);
+			ksort($parameters); //parameters need to be in sorted order
 		}
 
 		// CanonicalRequests
